@@ -1,0 +1,41 @@
+{
+    "pages":[
+        "pages/index/index",
+        
+        "pages/user/user",
+        "pages/pay/pay",
+        "pages/coupon/coupon",
+        "pages/editMobile/editMobile",
+        "pages/login/login",
+        "pages/serach/serach",
+        "pages/mobileLogin/mobileLogin",
+        "pages/hint/hint",
+        "pages/map/map"
+    ],
+    "window":{
+        "backgroundTextStyle":"light",
+        "navigationBarBackgroundColor": "#FF7623",
+        "navigationBarTitleText": "新博新美优选家居中心",
+        "navigationBarTextStyle":"#fff"
+    },
+    "tabBar": {
+        "color": "#666",
+        "selectedColor": "#FF7623",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "assests/images/home.png",
+                "selectedIconPath": "assests/images/onHome.png"
+            },
+            {
+                "pagePath": "pages/user/user",
+                "text": "我的",
+                "iconPath": "assests/images/my.png",
+                "selectedIconPath": "assests/images/onMy.png"
+            }
+        ]
+    }
+    
+}

@@ -1,0 +1,158 @@
+
+.main{
+    width: 100%;
+    height: 100%;
+}
+.former{
+    position: relative;
+    width: 100%;
+}
+.former .title{
+    font-size: 1em;
+    padding: 20rpx 0;
+    margin-left: 5%;
+}
+.former .phoneText{
+    font-size: .8em;
+    padding: 20rpx 0;
+    margin-left: 5%;
+}
+.former .code{
+    position: relative;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 1em;
+    overflow: hidden;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+}
+.former .code .codeText{
+    width: 25%;
+    margin-left: 5%;
+    float: left;
+}
+.former .code .codeInput{
+    width: 35%;
+    height: 100rpx;
+    float: left;
+}
+.former .code .codeInput input{
+    display: inline-block;
+    width: 100%;
+    height: 100rpx;
+}
+.former .code .codeBtn{
+    float: left;
+    width: 35%;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #B2B2B2;
+    background: white;
+    border-left: 1px solid #E5E5E5;
+    border-radius: 0;
+}
+.former .next{
+    width: 90%;
+    margin-top: 50rpx;
+    margin-left: 5%;
+    height: 100rpx;
+    line-height: 100rpx;
+    border: 1px solid #E5E5E5;
+    color: #B2B2B2;
+    font-size: 1em;
+}
+.former .next.active{
+    color: white;
+    background: #FF7623;
+    border: 1px solid #E5E5E5;
+}
+.new{
+    width: 100%;
+}
+.new .title{
+    font-size: 1em;
+    padding: 20rpx 0;
+    margin-left: 3%;
+}
+.new .codePhone{
+    position: relative;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 1em;
+    overflow: hidden;
+    border-top: 1px solid #E5E5E5;
+}
+.new .codePhone .PhoneText{
+    width: 25%;
+    margin-left: 5%;
+    float: left;
+}
+.new .codePhone .PhoneInput{
+    width: 57%;
+    height: 100rpx;
+    float: left;
+    padding-left: 3%;
+}
+.new .codePhone .PhoneInput input{
+    display: inline-block;
+    width: 100%;
+    height: 100rpx;
+    color: #B2B2B2;
+}
+.new .codePhone .codeBtn{
+    float: left;
+    width: 40%;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #B2B2B2;
+    background: white;
+    border-left: 1px solid #E5E5E5;
+    border-radius: 0;
+    font-size: 1em;
+}
+.new .codePhone .codeBtn.codeText{
+    color: #FF7623;
+}
+.new .codeChunk{
+    position: relative;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 1em;
+    overflow: hidden;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+}
+.new .codeChunk .codeText{
+    width: 25%;
+    margin-left: 5%;
+    float: left;
+}
+.new .codeChunk .codeInput{
+    width: 97%;
+    height: 100rpx;
+    float: left;
+    color:#B2B2B2;
+    padding-left: 3%;
+}
+.new .codeChunk .codeInput input{
+    height: 100rpx;
+    width: 100%;
+}
+.new .submit{
+    width: 90%;
+    margin-top: 50rpx;
+    margin-left: 5%;
+    height: 100rpx;
+    line-height: 100rpx;
+    border: 1px solid #E6E6E6;
+    color: #9B9B9B;
+    font-size: 1em;
+}
+.new .submit.active{
+    color: white;
+    background: #FF7623;
+    border: 1px solid #FF7623;
+}

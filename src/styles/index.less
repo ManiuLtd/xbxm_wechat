@@ -1,0 +1,223 @@
+.p-index {
+	position: relative;
+	margin-top: 24px;
+	[class^="g-"] {
+		border: 1px solid #E5E4E4;
+		border-radius: 5px;
+	}
+	.u-contemporary {
+		font-size: 12px;
+		color: #9B9B9B;
+		span {
+			margin-right: 4px;
+		}
+	}
+	.u-title {
+		height: 38px;
+		line-height: 38px;
+		padding-left: 9px;
+		font-family: MicrosoftYaHei;
+		font-size: 18px;
+		color: #000000;
+		border-bottom: 1px solid #E5E4E4;
+	}
+	/*今日实时概况*/
+	.g-general-situation {
+		width: 100%;
+		li {
+			display: inline-block;
+			width: 8%;
+			vertical-align: middle;
+			padding-left: 24px;
+			box-sizing: border-box; 
+		}
+		li:not(:first-child) {
+			width: 17%;
+			height: 112px;
+			h4 {
+				font-size: 12px;
+				color: #9B9B9B;
+				margin-top: 22px;
+				margin-bottom: 9px;
+			}
+			h5 {
+				font-size: 18px;
+				color: #000000;
+			}
+			
+		}
+		.u-icon-circle {
+			width: 56px;
+			height: 56px;
+			background: #FF7623;
+			border-radius: 50%;
+			text-align: center;
+			i {
+				margin-top: 6px;
+				font-size: 40px;
+				color: #fff;
+			}
+		}
+	}
+	/*最近一周购买用户*/
+	.g-weekly-user {
+		position: relative;
+		display: inline-block;
+		width: 851px;
+		margin-top: 34px;
+		padding-bottom: 53px;
+		box-sizing: border-box;
+		.u-check-wchat-user {
+			position: relative;
+			.u-count-pie {
+				top: 54px;
+			}
+		}
+		.u-buy-user {
+			margin-top: 32px;
+			position: relative;
+			.u-count-pie {
+				top: 54px;
+			}
+		}
+		.u-pie-chart,.u-line-charts ,.u-wechant-pie{
+			display: inline-block;
+		}
+		.u-line-charts {
+			margin-left: -100px;
+		}
+		.u-count-pie {
+			position: absolute;
+			left: 48px;
+			text-align: center;
+			p{
+				// margin-bottom: 8px;
+				color: #000;
+				font-size: 14px;
+			}
+			span {
+					color: #9B9B9B;
+					font-size: 12px;
+
+				}
+			.u-contemporary {
+				// margin-top: 5px;
+		font-size: 10px;
+		color: #9B9B9B;
+		span {
+			margin-right: 4px;
+		}
+	}
+		}
+	}
+
+	/*最近一月销售排行*/
+	.g-month-sell-rank {
+		width: 45.5%;
+		height:532px;
+		position: absolute;
+		top: 187px;
+		left: 888px;
+		.u-rank-list {
+
+			padding: 16px 18px;
+			box-sizing: border-box;
+		}
+		table {
+			width: 100%;
+			font-size: 12px;
+		}
+		th {
+				color: #9B9B9B;
+				&:nth-child(3) {
+					min-width: 180px;
+				}
+			}
+		td {
+			&:first-child {
+				padding-left:7px;
+			}
+			&:nth-child(3) {
+					min-width: 180px;
+					span {
+						margin-right: 8px;
+						display:inline-block;
+						width:20%;
+
+					}
+				}
+		}
+		.el-progress {
+			width: 70%;
+			display: inline-block;
+		}
+		.el-progress-bar__outer {
+			background: transparent;
+		}
+		.el-progress-bar__inner {
+			background: #49A9EE;
+		}
+		.u-rank-title {
+			width: 111px;
+			margin-bottom: 24px;
+			padding: 9px 0;
+			font-size: 14px;
+			color: #9B9B9B;
+			text-align: center;
+			border: 1px solid #CCCCCC;
+			border-radius: 5px;
+		}
+	}
+	.f-in {
+		width: 20px;
+		height: 10px;
+		position: absolute;
+		top: 180px;
+		left: 1480px;
+	}
+
+	/*最近一周销售数据*/
+	.g-weekly-sell-data {
+		width: 851px;
+		margin-top: 47px;
+		margin-bottom: 95px;
+	}
+
+	/*最近一周客单*/
+	.g-weekly-user-list {
+		width: 45.5%;
+		position: absolute;
+		bottom: 0px;
+		left: 888px;
+		margin-top: 47px;
+	}
+
+	.el-icon-caret-bottom{
+		color:rgb(50,187,12)
+	}
+	.el-icon-caret-top{
+		color:rgb(253,96,16);
+	}
+}
+
+.g-weekly-user .u-count-pie {
+	.el-icon-caret-bottom{
+		color:rgb(50,187,12) !important;
+	}
+	.el-icon-caret-top{
+		
+		color:rgb(253,96,16) !important;
+	}
+}
+.u-update-time{
+	font-size:12px;
+	text-align:right;
+	float:right;
+	margin-right:20px;
+}
+.m-ranking-table tr td{
+	line-height:40px;
+}
+.g-weekly-user .u-count-pie .u-contemporary{
+	font-size:10px;
+}

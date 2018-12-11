@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.33, minimum-scale=0.33, maximum-scale=0.33, user-scalable=no" >
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="../css/common.css?v=2018071701">
+    <link rel="stylesheet" href="../css/lookCoupon.css?v=2018081302">
+    <title>查看优惠券</title>
+</head>
+<body>
+    <div class="main">
+
+        <div class="lookCoupon">
+            <div class="top">
+                <div class="topList">
+                    <span index='0' @click='selectType(0)' :class="activeFla?'active':''">可使用</span>
+                </div>
+                <div class="topList">
+                    <span index='2' :class="activeFla?'':'active'"  @click='selectType(2)'>已失效</span>
+                </div>
+            </div>
+            <div class="unused" v-if="activeFla">
+                <div class="mainChunk" v-for="coupon in couponData" :key="coupon.key">
+                    <img class="CouponLookBg" src="../images/CouponLookBg.png" alt="">
+                    <img src="../images/storeCoupon.png" class="typeImg" alt="" v-if="coupon.couponClass">
+                    <img src="../images/esbCoupon.png" class="typeImg" alt="" v-if="!coupon.couponClass">
+                    <div class="left">
+                        <p class='hidden'>使用条件: {{coupon.couponType!=1?'满'+coupon.minimumMoney+'元可使用':'无门槛'}}</p>
+                        <p class='hidden'>适用范围: {{coupon.merchantNames}}</p>
+                        <p class='hidden'>有效期: {{coupon.validStartTime}} - {{coupon.validEndTime}}</p>
+                    </div>
+                    <div class="right">
+                        ￥ <span>{{coupon.couponMoney}}</span>
+                    </div>
+                </div>
+                <div class='noCoupon' v-if="!couponData.length">
+                    <image src='../images/defaultCoupon.png' class='defaultCoupon'></image>
+                    <p>暂无优惠券</p>
+                </div>
+            </div>
+            <div class="lose" v-if="!activeFla">
+                <div class="mainChunk" v-for="coupon in couponData" :key="coupon.key">
+                    <img class="CouponLookBg" src="../images/CouponLookBg.png" alt="">
+                    <img src="../images/noStoreCoupon.png" class="typeImg" alt="" v-if="coupon.couponClass">
+                    <img src="../images/noEsbCoupon.png" class="typeImg" alt="" v-if="!coupon.couponClass">
+                    <div class="left">
+                        <p class='hidden'>使用条件: {{coupon.couponType!=1?'满'+coupon.minimumMoney+'元可使用':'无门槛'}}</p>
+                        <p class='hidden'>适用范围: {{coupon.merchantNames}}</p>
+                        <p class='hidden'>有效期: {{coupon.validStartTime}} - {{coupon.validEndTime}}</p>
+                    </div>
+                    <div class="right">
+                        ￥ <span>{{coupon.couponMoney}}</span>
+                    </div>
+                </div>
+                <div class='noCoupon' v-if="!couponData.length">
+                    <image src='../images/defaultCoupon.png' class='defaultCoupon'></image>
+                    <p>暂无优惠券</p>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!-- <div class="message">
+        <img src="../images/trueImg.png" alt="">
+        <p class="text"></p>
+    </div> -->
+</body>
+
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script src="../js/vue.min.js"></script>
+<script src="../js/common.js"></script>
+<script>
+    $(function(){
+        var batchNum = GetQueryString("batchNum");
+        var storage=window.localStorage;
+        var gTicket = storage.gTicket || '';
+        new Vue({
+        el: '.main',
+            data: {
+                codeBtn:true,
+                phoneValue:'',
+                codeValue:'',
+                activeFla:true,
+                couponData:[]
+            },
+            mounted() {
+                var _this=this;
+                _this.selectType(0)
+            },
+            methods:{
+                selectType(index){
+                    var _this=this;
+                    if(!index){
+                        this.activeFla=true;
+                    }else{
+                        this.activeFla=false;
+                    }
+                    $.ajax({
+                        url:api+"userCoupon/allCoupon",
+                        type:"post",
+                        data:{gTicket:gTicket,status:index},
+                        success: function(data){
+                            if(!data.errCode){
+                                _this.couponData=data.data;
+                                if(_this.couponData.length){
+                                    for(var i=0;i<_this.couponData.length;i++){
+                                        _this.couponData[i].validStartTime = formatTime(_this.couponData[i].validStartTime);
+                                        _this.couponData[i].validEndTime = formatTime(_this.couponData[i].validEndTime);
+                                        _this.couponData[i].merchantNames=_this.couponData[i].merchantNames.join(',')
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+            }
+        })
+
+
+    })
+</script>
+</html>

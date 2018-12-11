@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.33, minimum-scale=0.33, maximum-scale=0.33, user-scalable=no" >
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="../css/common.css?v=2018081302">
+    <style>
+        body{
+            background: #F6F6F6;
+        }
+        .userTopRadius{
+          height:200px;
+          width:100%;
+          position:absolute;
+          top:0;
+          left:0;
+        }
+        .userTopRadius img{
+          width:100%;
+          height:200px;
+        }
+        .top{
+        	width: 100%;
+        	height: 500px;
+        	text-align: center;
+        	font-size: 40px;
+        	/* background: #FF7623; */
+        	color: white;
+          z-index: 3;
+          position: relative;
+        }
+        .top img{
+        	width: 250px;
+        	border-radius: 50%;
+        	margin-top: 100px;
+        	margin-bottom: 30px;
+        }
+        .top p{
+
+        }
+        .infoList{
+          width:92%;
+          margin:auto;
+          margin-top:30px;
+          background:white;
+          overflow:hidden;
+          border-radius:12px;
+          box-shadow:0px 0px 15px #E6E6E6;
+          color: #F6F6F6;
+        }
+        .infoList .chunk{
+            width: 100%;
+            height: 200px;
+            line-height: 200px;
+            border-bottom: 3px solid #E5E5E5;
+            padding: 0 5%;
+            font-size: 50px;
+            overflow: hidden;
+        }
+        .infoList a{
+            color: #666;
+        }
+        .infoList .chunk .mobile,.infoList .chunk .coupon{
+            width: 45px;
+            margin-right: 28px;
+            display: inline-block;
+            position: relative;
+            top: 20px;
+        }
+        .infoList .chunk .coupon{
+          width:60px;
+          top:5px;
+          left:-5px;
+          margin-right:10px;
+        }
+        .infoList .chunk .mobileText{
+          float: right;
+          position: relative;
+          top:0;
+          right:170px;
+        }
+        /* .infoList .chunk.clickMobile{
+        	border-top: 3px solid #ccc;
+        } */
+        .infoList .chunk .leftIco{
+            width: 50px;
+            /* transform: rotateY(180deg); */
+            float: right;
+            position: relative;
+            top:75px;
+            right:100px;
+
+        }
+
+    </style>
+    <title>个人中心</title>
+</head>
+<body>
+    <div class="main">
+        <div class="login" v-if="loginFla">
+            <div class="loginChunk">
+                <!-- <span>手机号码</span> -->
+                <input type="text" maxlength="11" class="inputPhone" v-model="phoneValue" placeholder="填写手机号码" v-on:input="inputPhone">
+                <button class="codeBtn" v-bind:disabled='codeBtn' @click='code'>获取验证码</button>
+            </div>
+            <div class="loginChunk">
+                <!-- <span>验证码</span> -->
+                <input type="text" v-model="codeValue" maxlength="6" class="inputCode" placeholder="输入验证码">
+            </div>
+            <input type="button" @click='submitLogin' class="submitLogin"  value="登录">
+        </div>
+        <div class="userContent" v-if="!loginFla">
+          <div class='userTopRadius'>
+            <img src="../images/borderRadius.png" alt="">
+          </div>
+
+            <div class="top">
+                <img src="../images/man.png" alt="">
+                <p></p>
+            </div>
+            <div class="infoList">
+                <a href="editMobile.html">
+                    <div class="chunk clickMobile">
+                        <img src="../images/mobile.png" class='mobile' alt="">
+                        <span>修改手机号</span>
+                        <img src="../images/leftIco.png" class='leftIco' alt="">
+                        <span class="mobileText">{{mobile}}</span>
+                    </div>
+                </a>
+                <a href="lookCoupon.html">
+                    <div class="chunk clickCoupon">
+                        <img src="../images/userCoupon.png" class='coupon' alt="">
+                        <span>我的优惠券</span>
+                        <img src="../images/leftIco.png" class='leftIco' alt="">
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="message">
+        <img src="../images/trueImg.png" alt="">
+        <p class="text"></p>
+    </div>
+</body>
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script src="../js/vue.min.js"></script>
+<script src="../js/common.js"></script>
+<script>
+    $(function(){
+
+        var batchNum = GetQueryString("batchNum");
+        var code = GetQueryString("code");
+        var storage=window.localStorage;
+        var gTicket = storage.gTicket || '';
+        var mobile = storage.mobile || '';
+        var that=this;
+
+        new Vue({
+        el: '.main',
+            data: {
+                loginFla:false,
+                codeBtn:true,
+                phoneValue:'',
+                codeValue:'',
+                gzhOpenId:'',
+                mobile:storage.mobile
+            },
+            mounted() {
+              var _this=this;
+              var appid='wx4fb81d3d47c5f1c0';
+              var local=window.location.href;
+              if(code == null || code === ''){
+                window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+appid +'&redirect_uri='+ encodeURIComponent(local) +'&response_type=code&scope=snsapi_base&state=1#wechat_redirect'
+              }else{
+                // 传code
+                $.ajax({
+                    url:api+"webChatSubs/checkUserExist",
+                    type:"post",
+                    data:{code:code},
+                    success: function(data){
+                        if(data.errCode == 0){
+                            _this.loginFla=false;
+                            storage.gTicket=data.data.gTicket;
+                            storage.mobile=data.data.mobile;
+                        }else{
+                          _this.gzhOpenId=data.data.gzhOpenId;
+                          _this.loginFla=true;
+                        }
+                    }
+                })
+              }
+
+            },
+            methods:{
+                inputPhone(val){
+                    if(/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/.test(this.phoneValue)){
+                        this.codeBtn=false;
+                    }else{
+                        this.codeBtn=true;
+                    }
+                },
+                code(){
+                  var _this=this;
+                  _this.codeBtn=true
+                    $.ajax({
+                        url:api+"webChatSubs/getCheckNum",
+                        type:"post",
+                        data:{mobile:this.phoneValue,gzhOpenId:_this.gzhOpenId},
+                        success: function(data){
+                            if(!data.errCode){
+                                dialog('已发送');
+                                codeCountDown(60);
+                            }else if(data.errCode==222){
+                              dialog('该手机号已绑定其他微信账号',1);
+                              _this.codeBtn=false
+                            }else if(data.errCode==223){
+                              dialog('该微信账号已被其他手机号绑定',1);
+                              _this.codeBtn=false
+                            }else if(data.errCode==227){
+                              dialog('获取验证码频繁，请稍后再试',1);
+                              _this.codeBtn=false
+                            }else if(data.errCode==228){
+                              dialog('获取验证码超出今日限制，请改天再试',1);
+                              _this.codeBtn=false
+                            }else{
+                              dialog('获取验证码失败，请重试！',1);
+                              _this.codeBtn=false
+                            }
+                        }
+                    })
+                },
+                submitLogin(){
+                    var _this=this;
+                    if (!_this.phoneValue) {
+                        dialog('手机号不能为空!',1);
+                        return false;
+                    }
+                    if (!_this.codeValue) {
+                        dialog('验证码不能为空!',1);
+                        return false;
+                    }
+                    $.ajax({
+                        url:api+"webChatSubs/checkIn",
+                        type:"post",
+                        data:{mobile:this.phoneValue,checkNum:this.codeValue,gzhOpenId:_this.gzhOpenId},
+                        success: function(data){
+                            if(!data.errCode){
+                                dialog('登录成功！');
+                                storage.gTicket=data.data.gTicket;
+                                storage.mobile=data.data.mobile;
+                                _this.loginFla=false;
+                            }else{
+                                dialog('短信验证码错误',1);
+                            }
+                        }
+                    })
+                }
+            }
+        })
+
+
+    })
+</script>
+</html>

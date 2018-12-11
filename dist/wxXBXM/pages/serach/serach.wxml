@@ -1,0 +1,61 @@
+<!--index.wxml-->
+<view class="main">
+    <view class='mainTop'>
+        <!-- 搜索  -->
+        <view class='top'>
+            <view class='serach'>
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/search.png'></image>
+                <input type='text' confirm-type='search' placeholder='搜索' placeholder-style="color:#B2B2B2" bindfocus='searchFocus' value='{{value}}' bindblur='searchBlur' bindconfirm='searchConfirm'></input>
+            </view>
+            <view class='returnBtn' bindtap='returnClick'>取消</view>
+        </view>
+        <view class='historyList' wx:if='{{serachFla}}'>
+            <view class='historyListTop'>
+                <text class='historyText'>历史搜索</text>
+                <text class='empty' bindtap='empty'>清除</text>
+            </view>
+            <view class='historyContent'>
+                <text wx:for='{{serachData}}' wx:key='{{index}}' data-value='{{serachs}}' wx:for-item='serachs' bindtap='historyClick'>{{serachs}}</text>
+                <text class='default' wx:if='{{!serachData.length}}'>还没有搜索记录</text>
+            </view>
+        </view>
+    </view>
+   
+
+    <!--商店列表  -->
+    <view class='content'>
+        <scroll-view class='storeList' scroll-y='true' bindscrolltolower='scrollStore'>
+            <view class='store' wx:if='{{storeLists}}' wx:for='{{storeLists}}' wx:key="{{index}}" wx:for-item="storeList">
+                <view class='storeLeft'><image src='{{storeList.storeImageUrl}}'></image></view>
+                <view class='storeRight'>
+                    <text class='name hidden'>{{storeList.storeName}}</text>
+                    <!-- <view class='call' wx:if="{{storeList.responsiblePersonPhone.length<7}}">
+                        <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/phone.png?=1' mode='widthFix'></image>
+                        <text>暂未提供</text>
+                    </view>
+                    <view class='call'  wx:if="{{storeList.responsiblePersonPhone.length>=7}}" bindtap='call' data-phone='{{storeList.responsiblePersonPhone}}'>
+                        <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/phone.png?=1' mode='widthFix'></image>
+                        <text>{{storeList.responsiblePersonPhone}}</text>
+                    </view> -->
+
+                    <text class='address'>{{storeList.detailedShop}} </text>
+                    <view class='pay'>
+                        <!-- <button class='payText' data-name='{{storeList.name}}' data-id="{{storeList.id}}" bindtap="payClick">支付</button> -->
+                        <button class='payText'  open-type="getUserInfo" data-name='{{storeList.storeName}}' data-id="{{storeList.merchantUniqueCode}}" disabled='{{payBtnFla}}' bindgetuserinfo="payClick">支付</button> 
+                    </view>
+                </view>
+            </view>
+            <!--缺省值  -->
+            <view class='default' wx:if="{{!storeLists.length}}">
+                暂无相关商户
+            </view>
+            
+        </scroll-view>
+    </view>
+
+
+    <!-- <view bindtap='toAddress'>您现在距离最近的商场：{{address}}</view>
+
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 获取手机号 </button> -->
+
+</view>

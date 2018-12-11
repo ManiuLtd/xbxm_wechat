@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.33, minimum-scale=0.33, maximum-scale=0.33, user-scalable=no" >
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="../css/common.css?v=2018081302">
+    <style>
+        body{
+            background: white;
+        }
+        .login .title{
+            font-size: 50px;
+            line-height: 150px;
+            height: 150px;
+            border-bottom: 3px solid #ccc;
+            padding-left: 5%;
+            color: #666;
+        }
+    </style>
+    <title>修改手机号</title>
+</head>
+<body>
+    <div class="main">
+        <div class="login">
+            <p class="title">请验证新手机号</p>
+            <div class="loginChunk">
+                <!-- <span>手机号码</span> -->
+                <input type="text" maxlength="11" class="inputPhone" v-model="phoneValue" placeholder="请输入新手机号" v-on:input="inputPhone">
+                <button class="codeBtn" v-bind:disabled='codeBtn' @click='code'>获取验证码</button>
+            </div>
+            <div class="loginChunk">
+                <!-- <span>验证码</span> -->
+                <input type="text" v-model="codeValue" maxlength="6" class="inputCode" placeholder="输入验证码">
+            </div>
+            <input type="button" @click='submitLogin' class="submitLogin"  value="提交">
+            <a href="user.html" class="returnBtn">返回</a>
+        </div>
+
+    </div>
+    <div class="message">
+        <img src="../images/trueImg.png" alt="">
+        <p class="text"></p>
+    </div>
+</body>
+
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script src="../js/vue.min.js"></script>
+<script src="../js/common.js"></script>
+<script>
+    $(function(){
+        var batchNum = GetQueryString("batchNum");
+        var storage=window.localStorage;
+        var gTicket = storage.gTicket || '';
+        new Vue({
+        el: '.main',
+            data: {
+                codeBtn:true,
+                phoneValue:'',
+                codeValue:'',
+            },
+            mounted() {
+                var _this=this;
+
+            },
+            methods:{
+                inputPhone(val){
+                    if(/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/.test(this.phoneValue)){
+                        this.codeBtn=false;
+                    }else{
+                        this.codeBtn=true;
+                    }
+                },
+                code(){
+                  var _this=this
+                  _this.codeBtn=true
+
+                    $.ajax({
+                        url:api+"webChatSubs/getCheckNum1",
+                        type:"post",
+                        data:{mobile:this.phoneValue,gTicket:gTicket},
+                        success: function(data){
+                            if(!data.errCode){
+                                dialog('已发送');
+                                codeCountDown(60);
+                            }else if(data.errCode==222){
+                              dialog('该手机号已绑定其他微信账号',1);
+                              _this.codeBtn=false
+                            }else if(data.errCode==223){
+                              dialog('该微信账号已被其他手机号绑定',1);
+                              _this.codeBtn=false
+                            }else if(data.errCode==227){
+                              dialog('获取验证码频繁，请稍后再试',1);
+                              _this.codeBtn=false
+                            }else if(data.errCode==228){
+                              dialog('获取验证码超出今日限制，请改天再试',1);
+                              _this.codeBtn=false
+                            }else{
+                              dialog('获取验证码失败，请重试！',1);
+                              _this.codeBtn=false
+                            }
+                        }
+                    })
+                },
+                submitLogin(){
+                    var _this=this;
+                  if (!_this.phoneValue) {
+                      dialog('手机号不能为空!',1);
+                      return false;
+                  }
+                  if (!_this.codeValue) {
+                      dialog('验证码不能为空!',1);
+                      return false;
+                  }
+                  $.ajax({
+                      url:api+"webChatSubs/changePhone",
+                      type:"post",
+                      data:{mobile:_this.phoneValue,checkNum:_this.codeValue,gTicket:gTicket},
+                      success: function(data){
+                          if(!data.errCode){
+                              dialog('更改手机号成功！');
+                              setTimeout(function(){
+                                location.href='user.html';
+                              },3000)
+                          }else{
+                              dialog('手机号或验证码错误');
+                          }
+                      }
+                  })
+
+                }
+            }
+        })
+
+    })
+</script>
+</html>

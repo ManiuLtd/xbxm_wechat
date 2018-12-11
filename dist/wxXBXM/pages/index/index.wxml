@@ -1,0 +1,89 @@
+<!--index.wxml-->
+<view class="main">
+<!--顶部  -->
+    <view class='mainTop'>
+        <view class='map'>
+            <view class="mapIco"><image src='https://trade.uselect.com.cn/wxXBXM/assests/images/site.png?=1'></image></view>
+            <text class='address' bindtap='more'>{{address}}<text class='more' bindtap='more'></text></text>
+            
+            <!-- <view class='more' bindtap='more'>
+                <text>更多</text>
+                <view class='moreIco'><image src='https://trade.uselect.com.cn/wxXBXM/assests/images/rightIcoBlue.png'></image></view>
+            </view> -->
+        </view>
+        <!-- 搜索  -->
+        <navigator class='serach' url="/pages/serach/serach?marketid={{marketid}}&marketUniqueCode={{marketUniqueCode}}">
+            <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/search.png'></image>
+            <input type='text' placeholder='搜索' placeholder-style="color:#B2B2B2" disabled></input> 
+        </navigator>
+
+        <view class='advertising'>
+            <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/advertising.png?v=6' mode='widthFix'></image>
+        </view>
+
+            <!-- 楼层  -->
+        <scroll-view class='floorList' scroll-x="true" >
+            <view wx:for='{{floorLists}}'  wx:key="{{index}}" data-index='{{index}}' data-pagetext='{{floorList}}' class='{{tabSelect==index?"active":""}} {{floorLists.length<=3?"three":""}}' wx:for-item='floorList' bindtap='floorClick'>{{floorList}}</view>
+            <!-- <view class='active'>-1楼</view> -->
+        </scroll-view>
+    </view>
+
+    <!--商店列表  -->
+    <view class='content heightChunk'>
+        <scroll-view class='storeList' scroll-y='true' bindscrolltolower='scrollStore'>
+            <view class='store' wx:if='{{storeLists}}' wx:for='{{storeLists}}' wx:key="{{index}}" wx:for-item="storeList">
+                <view class='storeLeft'><image src='{{storeList.storeImageUrl}}'></image></view>
+                <view class='storeRight'>
+                    <text class='name hidden'>{{storeList.storeName}}</text>
+                    <!-- <view class='call' wx:if="{{storeList.responsiblePersonPhone.length<7}}">
+                        <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/phone.png?=1' mode='widthFix'></image>
+                        <text>暂未提供</text>
+                    </view>
+                    <view class='call'  wx:if="{{storeList.responsiblePersonPhone.length>=7}}" bindtap='call' data-phone='{{storeList.responsiblePersonPhone}}'>
+                        <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/phone.png?=1' mode='widthFix'></image>
+                        <text>{{storeList.responsiblePersonPhone}}</text>
+                    </view> -->
+
+                    <text class='address'>{{storeList.detailedShop}} </text>
+                    <view class='pay'>
+                        <!-- <button class='payText' data-name='{{storeList.name}}' data-id="{{storeList.id}}" bindtap="payClick">支付</button> -->
+                        <button class='payText'  open-type="getUserInfo" data-name='{{storeList.storeName}}' data-id="{{storeList.merchantUniqueCode}}" disabled='{{payBtnFla}}' bindgetuserinfo="payClick">支付</button> 
+                    </view>
+                </view>
+            </view>
+            <!--缺省值  -->
+            <view class='default' wx:if="{{defaultFla}}">
+                该楼层还没有商户哦，快去其他楼层抢购！
+            </view>
+        </scroll-view>
+    </view>
+    <!-- <view bindtap='toAddress'>您现在距离最近的商场：{{address}}</view>
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 获取手机号 </button> -->
+
+</view>
+<!-- 选择商场  -->
+<view class='showAddress' wx:if="{{showAddress}}">
+    <view class='masking' bindtap='close'></view>
+    <view class='addressSetlect'>
+        <view class='top'>
+            <text>选择商场</text>
+            <view class='close' bindtap='close' >
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/close.png'mode='widthFix'></image>
+            </view>
+            
+        </view>
+        <scroll-view class='addressList' scroll-y>
+            <view class='list {{confirmDataIndex==index?"active":""}}' wx:key='{{index}}' bindtap='addressClick' data-index='{{index}}' data-address="{{addressList.marketName}}" data-marketUniqueCode='{{addressList.marketUniqueCode}}' data-marketid='{{addressList.marketId}}' wx:for='{{addressLists}}' wx:for-item='addressList'>
+                 <!-- <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/store2.png' class='addressLogo show ' mode='widthFix'></image>  -->
+                <!-- <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/store.png' class='addressLogo {{confirmDataIndex!=index?"show":""}}' mode='widthFix'></image> -->
+                <view class='addressChunk'>
+                    <view class='marketName'>{{addressList.marketName}}</view>
+                    <view class='detailAddress'>{{addressList.detailAddress}}</view>
+                </view>
+                <!-- <text>{{addressList.marketName}}</text> -->
+                <image src='/assests/images/success.png' class='selectTrue' mode='widthFix'></image>
+            </view>
+        </scroll-view>
+        <!-- <button class='Confirm' bindtap='Confirm'>确认</button> -->
+    </view>
+</view>

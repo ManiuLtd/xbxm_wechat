@@ -1,0 +1,114 @@
+/**app.wxss**/
+image{
+    width: 100%;
+    height: 100%;
+}
+
+view,text{
+    color: #666;
+    font-family: PingFangSC-Regular;
+}
+input{
+    display: inline-block;
+    outline:none;
+    /* border:none; */
+    list-style: none;
+}
+button::after{
+  border:none;
+}
+.hidden {
+    overflow: hidden;
+    word-break: keep-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*  成功  */
+.successChunk{
+    text-align: center;
+    margin-top: 60rpx;
+}
+.successChunk .successText{
+    font-size: 1.2em;
+    margin-top: 40rpx;
+}
+.successChunk .name{
+    font-size: .8em;
+    margin-top: 40rpx;
+    color: #888;
+}
+.successChunk .money{
+    font-size: 1.2em;
+    margin-top: 40rpx;
+    font-weight: bold;
+}
+.successChunk button{
+    width: 90%;
+    height: 100rpx;
+    line-height: 100rpx;
+    background: #FF7623;
+    color: white;
+    border-radius: 10rpx;
+    font-size: 1em;
+    position: absolute;
+    bottom: 200rpx;
+    left: 5%;
+}
+/*  失败  */
+.errorChunk{
+    text-align: center;
+    margin-top: 60rpx;
+}
+.errorChunk .errorText{
+    font-size: 1.2em;
+    margin-top: 40rpx;
+}
+.errorChunk .anew{
+    font-size: .8em;
+    margin-top: 40rpx;
+    color: #888;
+}
+
+.errorChunk button{
+    width: 90%;
+    height: 100rpx;
+    line-height: 100rpx;
+    background: #FF7623;
+    color: white;
+    border-radius: 10rpx;
+    font-size: 1em;
+    position: absolute;
+    bottom: 200rpx;
+    left: 5%;
+}
+/*  网络故障  */
+.wifiErrorChunk{
+    text-align: center;
+    margin-top: 60rpx;
+}
+.wifiErrorChunk image{
+    width:120px;
+}
+.wifiErrorChunk .wifiErrorText{
+    font-size: 1.2em;
+    margin-top: 40rpx;
+    color: #888;
+}
+.wifiErrorChunk .anew{
+    font-size: .8em;
+    margin-top: 40rpx;
+    color: #888;
+}
+.wifiErrorChunk button{
+    width: 90%;
+    height: 100rpx;
+    line-height: 100rpx;
+    background: #F8F8F8;
+    border-radius: 10rpx;
+    font-size: 1em;
+    position: absolute;
+    bottom: 200rpx;
+    left: 5%;
+    border: 1px solid #ccc;
+}

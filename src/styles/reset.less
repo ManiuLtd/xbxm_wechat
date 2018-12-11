@@ -1,0 +1,67 @@
+/* reset */
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;font-family: MicrosoftYaHei;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;font-family: MicrosoftYaHei;}
+table{border-collapse:collapse;border-spacing:0;}
+span{font-family: MicrosoftYaHei;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+a {text-decoration: none;color: #3D68FF;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:normal;}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+body{background:#fff;}
+strong,em,b,sub {
+	font-weight: normal;
+	font-style: normal;
+}
+button {
+	background: transparent;
+	border: none;
+}
+.f-center{
+	text-align: certer;
+}
+.el-button {
+	border: none;
+	width: 160px;
+	height: 40px;
+	padding: 0px;
+	vertical-align: middle;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.clearfix {
+	zoom:1;//为了兼容IE
+	&:after{
+content:'';//设置内容为空
+
+height:0;//高度为0
+
+line-height:0;//行高为0
+display:block;//将文本转为块级元素
+
+visibility:hidden;//将元素隐藏
+
+clear:both;//清除浮动
+}
+}
+.u-special-point{
+	cursor: pointer !important;
+}
+.u-overflow-content{
+	overflow: hidden !important;
+	text-overflow:ellipsis ;
+	white-space: nowrap ;
+}

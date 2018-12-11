@@ -1,0 +1,25 @@
+<!-- <view class='noLogin'>
+    <view>你还没有登录哦，快去登录！</view>
+    <button class='payText'  open-type="getUserInfo" bindgetuserinfo="payClick">支付</button> 
+</view> -->
+
+<view class='main'>
+    <view class='userTop'>
+        <view class='userTopRadius'><image src="https://trade.uselect.com.cn/wxXBXM/assests/images/borderRadius.png"></image></view>
+        <image class='avatarUrl' src='{{userInfo.avatarUrl?userInfo.avatarUrl:"/assests/images/man.png"}}'></image>
+        <view class='name'>{{userInfo.nickName?userInfo.nickName:''}}</view>
+    </view>
+    <view class='infoList'>
+        <view class='chunk' bindtap='clickMobile'>
+            <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/mobile.png' class='mobile' mode='widthFix'></image>
+            <text>修改手机号</text>
+            <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/leftIco.png' class='leftIco' mode='widthFix'></image>
+            <text class='iphoneText'>{{iphone}}</text>
+        </view>
+        <view class='chunk' bindtap='clickCoupon'>
+            <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/userCoupon.png' class='coupon' mode='widthFix'></image>
+            <text>我的优惠券</text>
+            <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/leftIco.png' class='leftIco' mode='widthFix'></image>
+        </view>
+    </view>
+</view>

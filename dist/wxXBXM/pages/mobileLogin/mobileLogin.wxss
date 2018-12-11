@@ -1,0 +1,75 @@
+
+/* 手机号登录  */
+.mobileChunk{
+    width: 100%;
+}
+.mobileChunk .list{
+    width: 100%;
+    border-bottom: 1px solid #E5E5E5;
+    padding: 0 3%;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+}
+.mobileChunk .list:nth-child(1){
+    border-top: 1px solid #E5E5E5;
+}
+.mobileChunk .list label{
+    display: inline-block;
+    width: 23%;
+}
+.mobileChunk .list .phone{
+    width: 57%;
+    height: 50px;
+    padding-left: 3%;
+}
+.mobileChunk .list .phone input{
+    height: 50px;
+    color: #B2B2B2
+}
+.mobileChunk .list .codeBtn{
+    width: 40%;
+    display: inline-block;
+    text-align: center;
+    color: #B2B2B2;
+    border: 0;
+    height: 50px;
+    border-radius: 0;
+    background: white;
+    border-left: 1px solid #E5E5E5;
+    font-size: 1em;
+    line-height: 50px;
+}
+.mobileChunk .list .code{
+    width: 97%;
+    height: 50px;
+    padding-left: 3%;
+    color: #B2B2B2;
+}
+.mobileChunk .list .codeBtn.codeText{
+    color: #FF7623;
+}
+
+.mobileChunk .submitChunk button{
+    width: 90%;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin: auto;
+    border: 0;
+    background: #FF7623;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+.mobileChunk .submitChunk .loginBtn{
+    background: #F8F8F8;
+    color: #B2B2B2;
+    border: 1px solid #E6E6E6;
+}
+.mobileChunk .submitChunk button.payBtn{
+    background: #fff;
+    color: #FF7623;
+    border: 1px solid #FF7623;
+}

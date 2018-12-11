@@ -1,0 +1,31 @@
+
+<view class='main'>
+    <template name='success'>
+        <view class='successChunk'>
+            <icon type="success" size="120"/>
+            <view class='successText'>支付成功</view>
+            <view class='name'>新博新美龙泉店</view>
+            <view class='money'>￥1000.00</view>
+            <button>完 成</button>
+        </view>
+    </template>
+    <template name='error'>
+        <view class='errorChunk'>
+            <icon type="warn" size="120"/>
+            <view class='errorText'>支付异常</view>
+            <view class='anew'>请重新支付</view>
+            <button>再次支付</button>
+        </view>
+    </template>
+    <template name='wifiError'>
+        <view class='wifiErrorChunk'>
+            <image src='/assests/images/wifi.png' mode='widthFix'></image>
+            <view class='wifiErrorText'>网络请求失败</view>
+            <view class='anew'>请检查您的网络</view>
+            <button>重新加载</button>
+        </view>
+    </template>
+</view>
+
+<import src="hint.wxml"/>
+<template is="wifiError"/>

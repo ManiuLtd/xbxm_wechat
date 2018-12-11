@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.33, minimum-scale=0.33, maximum-scale=0.33, user-scalable=no" >
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="../css/common.css?v=2018081302">
+    <link rel="stylesheet" href="../css/coupon.css?v=2018081302">
+    <title>领取优惠券</title>
+</head>
+<body>
+    <div class="main">
+        <div class="login" style='display:none'>
+            <div class="loginChunk">
+                <!-- <span>手机号码</span> -->
+                <input type="text" maxlength="11" class="inputPhone" placeholder="填写手机号码">
+                <button class="codeBtn" disabled>获取验证码</button>
+            </div>
+            <div class="loginChunk">
+                <!-- <span>验证码</span> -->
+                <input type="text" maxlength="6" class="inputCode" placeholder="输入验证码">
+            </div>
+            <input type="button" class="submitLogin2" value="登录">
+        </div>
+        <!-- 领取优惠券 -->
+        <div class="getCoupon" style="display:block">
+            <div class="couponChunk">
+                <div class="topImg">
+                    <!-- <img src="../images/noCoupon.png" alt=""> -->
+                    <img src="../images/onCoupon.png" alt="">
+                </div>
+                <div class="couponContent">
+                    <img src="../images/couponBg.png" class="couponBg" alt="">
+                    <!-- <img src="../images/noesbCoupon.png" class="typeImg" alt=""> -->
+                    <img src="../images/esbCoupon.png" class="typeImg" alt="">
+                    <div class="contentChunk">
+                        <p class="num">
+                            <span class="numText">0</span>
+                            <span>元优惠券</span>
+                        </p>
+                        <div class="condition">
+                            <p>使用条件：满<span class="conditionText">0</span>元可用</p>
+                            <p>有限期：<span class="time">2018.06.06</span> - <span class="time2">2018.06.23</span></p>
+                        </div>
+                        <div class="countDown">
+                            <p>距离优惠券开抢还有</p>
+                            <span class="day">0</span> 天
+                            <span class="hour">0</span> 时
+                            <span class="minute">0</span> 分
+                            <span class="sec">0</span> 秒
+                        </div>
+                        <div class="scope">
+                            <span>使用范围</span>
+                            <div class="storeList hidden">
+                                <!-- <span>龙泉店</span>
+                                <span>龙泉店</span> -->
+                            </div>
+                            <img src="../images/leftIco.png" alt="" class="leftIco">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="button" class="getSubmit active" value="立即领取">
+        </div>
+
+        <div class="particulars"  style="display:none">
+            <div class="topImg">
+                <img src="../images/onCoupon.png" alt="">
+            </div>
+            <div class="psContent">
+                <img src="../images/couponParticularsBg.png" class="couponParticularsBg" alt="">
+                <img src="../images/esbCoupon.png" class="typeImg" alt="">
+                <p class="title">使用范围</p>
+                <div class="content ">
+                    <p class="contentText">新博新美资中店、新博新美龙泉店、新博新美新都店、新博新美资中店、新博新美龙泉店、新博新美新都店、</p>
+                </div>
+            </div>
+            <input type="button" class="return" value="返回">
+        </div>
+    </div>
+    <div class="message">
+        <img src="../images/trueImg.png" alt="">
+        <p class="text"></p>
+    </div>
+</body>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.3.0.js?v=20180306"></script>
+<script src="../js/jquery-1.11.2.min.js"></script>
+<script src="../js/common.js"></script>
+<script>
+    $(function(){
+      function GetQueryString(name) {
+          var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+          var r = window.location.search.substr(1).match(reg);
+          if (r!=null) return (r[2]); return null;
+      }
+		// var api="https://pro.uselect.com.cn/youxuan-coupon/";
+        var code = GetQueryString("code");
+        var storage=window.localStorage;
+        var gTicket = storage.gTicket || '';
+
+        var time=0;
+        var gzhOpenId=''
+        var _this=this;
+        var appid='wx4fb81d3d47c5f1c0';
+        var local=window.location.href;
+        if(code == null || code === ''){
+          window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+appid +'&redirect_uri='+ encodeURIComponent(local) +'?response_type=code&scope=snsapi_base&state=1#wechat_redirect'
+        }else{
+          var batchNum = GetQueryString("batchNum");
+          // batchNum=77
+          batchNum=batchNum.split('?')
+          storage.batchNum=batchNum[0]
+          // 传code
+          $.ajax({
+              url:api+"webChatSubs/checkUserExist",
+              type:"post",
+              data:{code:code},
+              success: function(data){
+                  if(data.errCode == 0){
+                    $('.login').hide();
+                    $('.getCoupon').show();
+                    storage.gTicket=data.data.gTicket;
+                    $.ajax({
+                        url:api+"userCoupon/couponInfo",
+                        type:"get",
+                        data:{gTicket:storage.gTicket,batchNum:storage.batchNum},
+                        success: function(data){
+                            $('.numText').text(data.data.coupon.couponMoney);
+                            $('.conditionText').text(data.data.coupon.minimumMoney);
+                            $('.time').text(formatTime(data.data.coupon.validStartTime))
+                            $('.time2').text(formatTime(data.data.coupon.validEndTime));
+
+                            var merchantNames=''
+                            if(data.data.coupon.couponClass){
+                                $('.typeImg').attr('src','../images/storeCoupon.png');
+                                for(var i=0;i<data.data.merchantNames.length;i++){
+                                    $('.storeList').append('<span>'+data.data.merchantNames[i]+'</span>');
+                                    if(data.data.merchantNames.length-1==i){
+                                        merchantNames += data.data.merchantNames[i]
+                                    }else{
+                                        merchantNames += data.data.merchantNames[i] +','
+                                    }
+                                }
+                                $('.psContent .contentText').text(merchantNames)
+                            }else{
+                                $('.typeImg').attr('src','../images/esbCoupon.png');
+                                for(var i=0;i<data.data.merchantNames.length;i++){
+                                    $('.storeList').append('<span>'+data.data.merchantNames[i]+'</span>');
+                                    if(data.data.merchantNames.length-1==i){
+                                        merchantNames += data.data.merchantNames[i]
+                                    }else{
+                                        merchantNames += data.data.merchantNames[i] +','
+                                    }
+                                }
+                                $('.psContent .contentText').text(merchantNames)
+
+                            }
+                            if(!data.errCode){
+                                if(data.data.coupon){
+
+                                }
+                            }else if(data.errCode==1053){
+                                // $('.getCoupon').addClass('no');
+                                $('.couponBg').attr('src','../images/couponBgLong.png');
+                                $('.getCoupon .couponContent').css('height','900px')
+                                $('.countDown').show();
+                                $('.getSubmit').removeClass('active')
+                                time=data.data.coupon.sendStartTime
+                                leftTimer()
+                                var timer=setInterval(leftTimer,1000);
+                            }else if(data.errCode==1051){
+                                // $('.getCoupon').addClass('no');
+                                dialog('券已下线，请下次再来',1,true);
+                                $('.getCoupon').addClass('no');
+                                $('.getSubmit').removeClass('active');
+                                $('.topImg img').attr('src','../images/noCoupon.png')
+                                if(data.data.coupon.couponClass){
+                                    $('.typeImg').attr('src','../images/noStoreCoupon.png')
+                                }else{
+                                    $('.typeImg').attr('src','../images/noEsbCoupon.png');
+                                }
+                            }else if(data.errCode==1054){
+                                // $('.getCoupon').addClass('no');
+                                dialog('已过领取时间',1,true);
+                                $('.getCoupon').addClass('no');
+                                $('.getSubmit').removeClass('active');
+                                $('.topImg img').attr('src','../images/noCoupon.png')
+                                if(data.data.coupon.couponClass){
+                                    $('.typeImg').attr('src','../images/noStoreCoupon.png')
+                                }else{
+                                    $('.typeImg').attr('src','../images/noEsbCoupon.png');
+                                }
+                            }else if(data.errCode==1055){
+                                dialog('券未上线，请耐心等待',1,true);
+                                $('.getCoupon').addClass('no');
+                                $('.getSubmit').removeClass('active');
+                                $('.topImg img').attr('src','../images/noCoupon.png')
+                                if(data.data.coupon.couponClass){
+                                    $('.typeImg').attr('src','../images/noStoreCoupon.png')
+                                }else{
+                                    $('.typeImg').attr('src','../images/noEsbCoupon.png');
+                                }
+                            }else if(data.errCode==1052){
+                                dialog('券已领完，请下次再来',1,true);
+                                $('.getCoupon').addClass('no');
+                                $('.getSubmit').removeClass('active');
+                                $('.topImg img').attr('src','../images/noCoupon.png')
+                                if(data.data.coupon.couponClass){
+                                    $('.typeImg').attr('src','../images/noStoreCoupon.png')
+                                }else{
+                                    $('.typeImg').attr('src','../images/noEsbCoupon.png');
+                                }
+                            }else if(data.errCode==1050){
+                                dialog('您已经领取过了，不要太贪心哦',1,true);
+                                $('.getSubmit').removeClass('active');
+                            }
+                        }
+                    })
+                  }else{
+                    gzhOpenId=data.data.gzhOpenId;
+                    $('.login').show();
+                    $('.getCoupon').hide();
+                    $('body').css('background','white');
+                  }
+              }
+          })
+        }
+
+
+        // $('.login').show();
+        //     $('.getCoupon').hide();
+        //     $('body').css('background','white');
+
+        $('.main').on('click','.getSubmit.active',function(){
+            $.ajax({
+                url:api+"userCoupon/coupon",
+                type:"get",
+                data:{gTicket:storage.gTicket,batchNum:storage.batchNum},
+                success: function(data){
+                    if(!data.errCode){
+                        dialog('领取成功！');
+                        $('.getSubmit').removeClass('active');
+                    }else if(data.errCode==1050){
+                      dialog('您已经领取过了，不要太贪心哦',1,true);
+                      $('.getSubmit').removeClass('active');
+                    }else if(data.errCode==1063){
+                      dialog('系统繁忙，请重试',1);
+                    }else{
+                      dialog('领取失败！',1);
+                    }
+                }
+            })
+        })
+
+        // 获取验证码
+        $('.main').on('click','.codeBtn',function(){
+            if(/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/.test($('.inputPhone').val())){
+
+                $.ajax({
+                    url:api+"webChatSubs/getCheckNum",
+                    type:"post",
+                    data:{mobile:$('.inputPhone').val(),gzhOpenId:gzhOpenId},
+                    success: function(data){
+                        if(!data.errCode){
+                            dialog('已发送');
+                            codeCountDown(60);
+
+                        }else if(data.errCode==222){
+                          dialog('该手机号已绑定其他微信账号',1);
+                        }else if(data.errCode==223){
+                          dialog('该微信账号已被其他手机号绑定',1);
+                        }else if(data.errCode==227){
+                          dialog('获取验证码频繁，请稍后再试',1);
+                        }else if(data.errCode==228){
+                          dialog('获取验证码超出今日限制，请改天再试',1);
+                        }else{
+                          dialog('获取验证码失败，请重试！',1);
+                        }
+
+                    }
+                })
+            }else{
+                // dialog()
+            }
+
+        })
+
+        $('.main').on('keyup','.inputPhone',function(val){
+          if(/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/.test(this.value)){
+              $('.codeBtn').removeAttr('disabled')
+          }else{
+              $('.codeBtn').attr('disabled','true')
+          }
+        })
+
+        $('.main').on('click','.submitLogin2',function(val){
+          var data={mobile:$('.inputPhone').val(),checkNum:$('.inputCode').val(),gzhOpenId:gzhOpenId}
+          $.ajax({
+              url:api+"webChatSubs/checkIn",
+              type:"post",
+              data:data,
+              success: function(data){
+                  if(!data.errCode){
+                      dialog('登录成功！');
+                      $('.login').hide();
+                      $('.getCoupon').show();
+                      $('body').css('background','#FF7623');
+                      storage.gTicket=data.data.gTicket;
+                      $.ajax({
+                          url:api+"userCoupon/couponInfo",
+                          type:"get",
+                          data:{gTicket:storage.gTicket,batchNum:storage.batchNum},
+                          success: function(data){
+                              $('.numText').text(data.data.coupon.couponMoney);
+                              $('.conditionText').text(data.data.coupon.minimumMoney);
+                              $('.time').text(formatTime(data.data.coupon.validStartTime))
+                              $('.time2').text(formatTime(data.data.coupon.validEndTime));
+
+                              var merchantNames=''
+
+                              if(data.data.coupon.couponClass){
+                                  $('.typeImg').attr('src','../images/storeCoupon.png');
+                                  for(var i=0;i<data.data.merchantNames.length;i++){
+                                      $('.storeList').append('<span>'+data.data.merchantNames[i]+'</span>');
+                                      if(data.data.merchantNames.length-1==i){
+                                          merchantNames += data.data.merchantNames[i]
+                                      }else{
+                                          merchantNames += data.data.merchantNames[i] +','
+                                      }
+                                  }
+                                  $('.psContent .contentText').text(merchantNames)
+                              }else{
+                                  $('.typeImg').attr('src','../images/esbCoupon.png');
+                                  for(var i=0;i<data.data.merchantNames.length;i++){
+                                      $('.storeList').append('<span>'+data.data.merchantNames[i]+'</span>');
+                                      if(data.data.merchantNames.length-1==i){
+                                          merchantNames += data.data.merchantNames[i]
+                                      }else{
+                                          merchantNames += data.data.merchantNames[i] +','
+                                      }
+                                  }
+                                  $('.psContent .contentText').text(merchantNames)
+
+                              }
+                              if(!data.errCode){
+                                  if(data.data.coupon){
+
+                                  }
+                              }else if(data.errCode==1053){
+                                  // $('.getCoupon').addClass('no');
+                                  $('.couponBg').attr('src','../images/couponBgLong.png');
+                                  $('.getCoupon .couponContent').css('height','900px')
+                                  $('.countDown').show();
+                                  $('.getSubmit').removeClass('active')
+                                  time=data.data.coupon.sendStartTime
+
+                                  leftTimer()
+                                  var timer=setInterval(leftTimer,1000);
+                              }else if(data.errCode==1051){
+                                  // $('.getCoupon').addClass('no');
+                                  dialog('券已下线，请下次再来',1,true);
+                                  $('.getCoupon').addClass('no');
+                                  $('.getSubmit').removeClass('active');
+                                  $('.topImg img').attr('src','../images/noCoupon.png')
+                                  if(data.data.coupon.couponClass){
+                                      $('.typeImg').attr('src','../images/noStoreCoupon.png')
+                                  }else{
+                                      $('.typeImg').attr('src','../images/noEsbCoupon.png');
+                                  }
+                              }else if(data.errCode==1054){
+                                  // $('.getCoupon').addClass('no');
+                                  dialog('已过领取时间',1,true);
+                                  $('.getCoupon').addClass('no');
+                                  $('.getSubmit').removeClass('active');
+                                  $('.topImg img').attr('src','../images/noCoupon.png')
+                                  if(data.data.coupon.couponClass){
+                                      $('.typeImg').attr('src','../images/noStoreCoupon.png')
+                                  }else{
+                                      $('.typeImg').attr('src','../images/noEsbCoupon.png');
+                                  }
+                              }else if(data.errCode==1055){
+                                  // $('.getCoupon').addClass('no');
+                                  dialog('券未上线，请耐心等待',1,true);
+                                  $('.getCoupon').addClass('no');
+                                  $('.getSubmit').removeClass('active');
+                                  $('.topImg img').attr('src','../images/noCoupon.png')
+                                  if(data.data.coupon.couponClass){
+                                      $('.typeImg').attr('src','../images/noStoreCoupon.png')
+                                  }else{
+                                      $('.typeImg').attr('src','../images/noEsbCoupon.png');
+                                  }
+                              }else if(data.errCode==1052){
+                                  dialog('券已领完，请下次再来',1,true);
+                                  $('.getCoupon').addClass('no');
+                                  $('.getSubmit').removeClass('active');
+                                  $('.topImg img').attr('src','../images/noCoupon.png')
+                                  if(data.data.coupon.couponClass){
+                                      $('.typeImg').attr('src','../images/noStoreCoupon.png')
+                                  }else{
+                                      $('.typeImg').attr('src','../images/noEsbCoupon.png');
+                                  }
+                              }else if(data.errCode==1050){
+                                  dialog('您已经领取过了，不要太贪心哦',1,true);
+                                  $('.getSubmit').removeClass('active');
+                              }
+                          }
+                      })
+                  }else{
+                      dialog('验证码错误',1);
+                  }
+              }
+          })
+        })
+
+        $('.main').on('click','.scope',function(){
+            $('.getCoupon').hide();
+            $('.particulars').show();
+        })
+        $('.main').on('click','.return',function(){
+            $('.getCoupon').show();
+            $('.particulars').hide();
+        })
+
+        function leftTimer(){
+            var date = new Date();
+            var now = Date.parse(new Date());
+            var leftTime = time-now/1000;
+            // console.log(leftTime)
+            var days,hours,minutes,seconds;
+            if (leftTime>=0) {
+                days = Math.floor(leftTime/60/60/24);
+                hours = Math.floor(leftTime/60/60%24);
+                minutes = Math.floor(leftTime/60%60);
+                seconds = Math.floor(leftTime%60);
+            }
+            if(checkTime(days) == '00' && checkTime(hours) == '00' && checkTime(minutes) == '00' && checkTime(seconds) == '00'){
+                clearInterval(timer);
+                $('.couponBg').attr({'src':'../images/couponBg.png'});
+                $('.countDown').hide();
+                $('.couponContent').css({'height':'820px'});
+            }else if(leftTime<0){
+                clearInterval(timer);
+                $('.couponBg').attr({'src':'../images/couponBg.png'});
+                $('.countDown').hide();
+                $('.couponContent').css({'height':'820px'});
+            }
+            $('.day').text(checkTime(days));
+            $('.hour').text(checkTime(hours));
+            $('.minute').text(checkTime(minutes));
+            $('.sec').text(checkTime(seconds));
+
+        }
+
+
+    })
+</script>
+</html>

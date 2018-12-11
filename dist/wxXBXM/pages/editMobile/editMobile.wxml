@@ -1,0 +1,26 @@
+<view class='main'>
+    <!-- <view class='former' wx:if='{{!newFla}}'>
+        <view class='title'>请完成以下验证</view>
+        <view class='phoneText'>请输入155555555s收到的短信y验证码</view>
+        <view class='code'>
+            <text class='codeText'>验证码</text>
+            <view class='codeInput'><input placeholder='输入验证码' maxlength='6'></input></view>
+            <button class='codeBtn {{onCode?"no":""}}' bindtap='codeBtn'>获取验证码</button>
+        </view>
+        <button class='next {{onCode?"active":""}}'>下一步</button>
+    </view> -->
+    <view class='new'>
+        <view class='title'>请验证新手机号</view>
+        <view class='codePhone'>
+            <!-- <text class='PhoneText'>手机号码</text> -->
+            <view class='PhoneInput'><input placeholder='请输入新手机号' placeholder-style="color:#D8D8D8" bindinput='check' maxlength='11'></input></view>
+            <button class='codeBtn {{disabledCode?"":"codeText"}}' disabled='{{disabledCode}}' bindtap='codeBtn'>{{codeText}}</button>
+        </view>
+        <view class='codeChunk'>
+            <!-- <text class='codeText'>验证码</text> -->
+            <view class='codeInput'><input placeholder='输入验证码' placeholder-style="color:#D8D8D8" bindinput='codeNumber' maxlength='6'></input></view>
+        </view>
+        <button class='submit {{subimtFla?"":"active"}}' disabled='{{subimtFla}}' bindtap='loginBtn'>提交</button>
+        <button class='submit' bindtap='returnBtn'>返回</button>
+    </view>
+</view> 

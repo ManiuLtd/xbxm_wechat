@@ -1,0 +1,79 @@
+<view class='content'>
+    <!-- <button bindtap='pay'>支付</button> -->
+    <view class='topTitle'>您正申请付款给 {{storeName}} 商户</view>
+    <view class='moneyChunk'>
+        <text>￥</text>
+        <view class='moneyIpunt'><input placeholder='请输入支付金额' placeholder-style="color:#D8D8D8" type='digit' value='{{value}}'  bindinput='inputNum' bindblur='inputBlur' placeholder-class='placeholder' maxlength='9'></input></view>
+    </view> 
+
+    <view class='couponChunk'>
+        <view class='couponList' bindtap='selectCoupon' data-index='1' wx:if="{{maxPlatForm.batchNum}}">
+            <text class='name'>平台优惠券</text>
+            <view class='right hidden'>
+                <text wx:if='{{noPlatFormCoupon}}' class='numText'>未选择</text>
+
+                <text wx:if='{{!noPlatFormCoupon}}' class='num {{noNumPlatForm?"noNum":""}}'>{{maxPlatForm.couponMoney}}</text>
+                <text wx:if='{{!noPlatFormCoupon}}' class='numText'>({{maxPlatForm.couponType==0?'满'+maxPlatForm.minimumMoney+'元减'+maxPlatForm.couponMoney+'元劵':'无门槛'+maxPlatForm.couponMoney+'元劵'}})</text> 
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/leftIco.png' class='leftIco' mode='widthFix'></image>
+            </view>
+        </view>
+        <view class='couponList' bindtap='selectCoupon' data-index='2' wx:if='{{maxMerchant.batchNum}}'>
+            <text class='name'>商家优惠券</text>
+            <view class='right hidden'>
+                <text wx:if='{{noMerchantCoupon}}' class='numText'>未选择</text>
+
+                <text wx:if='{{!noMerchantCoupon}}' class='num {{noNumMerchant?"noNum":""}}'>{{maxMerchant.couponMoney}}</text>
+                 <text wx:if='{{!noMerchantCoupon}}' class='numText'>({{maxMerchant.couponType==0?'满'+maxMerchant.minimumMoney+'元减'+maxMerchant.couponMoney+'元劵':'无门槛'+maxMerchant.couponMoney+'元劵'}})</text> 
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/leftIco.png' class='leftIco' mode='widthFix'></image>
+            </view>
+        </view>
+        <view class='couponDefault' wx:if='{{!maxMerchant.batchNum && !maxPlatForm.batchNum}}'>
+            <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/coupon.png' class='couponImg' mode='widthFix'></image>
+            <text>暂无可用优惠券，逛逛公众号，有惊喜哦！</text>
+        </view>
+    </view>
+    <!-- <view class='coupon'>
+        <image src='/assests/images/payBg.png' class='payBg' mode='heightFix'></image>
+        <view class='couponTop'>
+            <text>使用优惠券</text>
+            <checkbox-group bindchange="checkboxChange" class='checkbox-group'>
+                <checkbox value="1" checked="true" />
+            </checkbox-group>
+        </view>
+        <view class='couponBottom'>
+            <text class='num'>199代金券</text>
+            <view class='subtract'>-￥100</view>
+        </view>
+    </view> -->
+
+    <view class='payNum'>￥{{payNum}}</view>
+    <button class='payBtn' disabled='{{payDisabled}}' bindtap='pay'>确认支付</button>
+</view>
+
+<!-- 选择优惠券  -->
+<view class='couponAddress' wx:if='{{showCoupon}}'>
+    <view class='masking' ></view>
+    <view class='couponSetlect'>
+        <view class='top'>
+            <text>{{couponType==1?'平台优惠券':'商家优惠券'}}</text>
+        </view>
+        <scroll-view class='addressList' scroll-y>
+            <checkbox-group class="radio-group" bindchange="radioChange">
+                <view class='list' wx:for='{{couponSelect}}' wx:key='{{index}}' wx:for-item='coupon'>
+                    <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/onCoupon.png' class='selectCouponBg' mode='widthFix'></image>
+                    <view class='listTop'>￥ 
+                        <text class='num'>{{coupon.couponMoney}}</text>
+                        <!-- {{coupon.batchNum==codePlatForm?true:false}} -->
+                        <!-- {{coupon.batchNum==codeMerchant?true:false}} -->
+                        <checkbox value="{{coupon.batchNum}}" data-index='{{index}}' checked="{{couponType==1?(coupon.batchNum==codePlatForm?true:false):(coupon.batchNum==codeMerchant?true:false)}}" type='{{couponType}}' color='#FF7623' class='checkbox-group '/>
+                    </view>
+                    <view class='bottom'>
+                        <view>订单金额满{{coupon.minimumMoney}}元可使用</view>
+                        <view>有效期 {{coupon.validStartTime}} - {{coupon.validEndTime}}</view>
+                    </view>
+                </view>
+            </checkbox-group>
+        </scroll-view>
+        <button class='Confirm' bindtap='Confirm'>{{ConfirmText}}</button>
+    </view>
+</view>

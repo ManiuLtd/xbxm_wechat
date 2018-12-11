@@ -1,0 +1,337 @@
+/**index.wxss**/
+.mainTop{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    background: #FF7623;
+    height:510rpx;
+}
+
+.mainTop .map{
+    /* border: 1px solid red; */
+    width: 90%;
+    margin: auto;
+    margin-bottom: 10rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    /* display: flex;
+    flex-direction: row;
+    align-items: center; */
+}
+.mainTop .map .mapIco{
+    width:21rpx;
+    height:27rpx;
+    margin-right: 20rpx;
+    /* background: url('../../assests/images/site.png') no-repeat; */
+    /* align-items:space-around; */
+    display: inline-block;
+    position: relative;
+    top: 0rpx;
+}
+.mainTop .map .address{
+    font-size: 1em;
+    letter-spacing: 0;
+    /* font-weight: bold */
+    justify-content:center ;
+    display: inline-block;
+    font-family: PingFangSC-Medium;
+    padding-right: 20rpx;
+    color: white;
+}
+.mainTop .map .more{
+    width: 0;
+    height: 0;
+    border-left:10rpx solid transparent;
+    border-right:10rpx solid transparent;
+    border-top:12rpx solid #fff;
+    display:inline-block;
+    position: relative;
+    top: -5rpx;
+    margin-left:10rpx;
+
+}
+
+
+/* .mainTop .map .more .moreIco{
+    margin-left: 5rpx;
+    width: 20rpx;
+    height: 20rpx;
+    display: inline-block;
+    position: relative;
+    top: 0rpx;
+} */
+.mainTop .serach{
+    width: 90%;
+    height: 70rpx;
+    margin: auto;
+    border: 1px solid #fff;
+    background:  #fff;
+    border-radius: 25px;
+    margin-bottom:20rpx;
+}
+.mainTop .serach image{
+    width: 40rpx;
+    height: 40rpx;
+    position: relative;
+    top:15rpx;
+    left: 20rpx;
+    float: left;
+}
+.mainTop .serach input{
+    width: 85%;
+    height: 70rpx;
+    /* display: inline-block; */
+    float: left;
+    margin-left: 15px;
+    font-size: 1rem;
+    background: white;
+}
+
+.mainTop .advertising{
+    height: 240rpx;
+    background: white;
+    padding: 10rpx;
+    padding-bottom: 15rpx;
+}
+
+.mainTop .floorList{
+    /* border-bottom: 1px solid red; */
+    background: #fff;
+    width: 100%;
+    white-space: nowrap;
+    display: flex;
+    height: 80rpx;
+    line-height: 80rpx;
+    /* margin-top: 10rpx; */
+    box-shadow:0px 0px 8rpx #ccc;
+
+}
+.mainTop .floorList view{
+    width: 22%;
+    height: 70rpx;
+    line-height: 70rpx;
+    display: inline-block;
+    color: #666;
+    font-size: 1rem;
+    text-align: center;
+    /* box-sizing: border-box; */
+    margin: 0 3.3%;
+}
+.mainTop .floorList view.three{
+    width: 27%;
+}
+.mainTop .floorList view.active{
+    color: #FF7623;
+    border-bottom: 12rpx solid #FF7623;
+}
+.content{
+    width:100%;
+    position: absolute;   
+    height:51%;
+    /* height:720rpx; */
+    top: 525rpx; 
+    /* margin-top: 40%; */
+    /* padding-bottom: 30rpx; */
+    /* border: 1px solid #FF7623  */
+}
+.content.heightChunk{
+    height:60%;
+}
+ .content .storeList{
+    position: relative;
+    left: 0;    
+    top: 0; 
+    height: 100%;
+     /* margin-bottom: 30rpx;  */
+    /* margin-top: 520rpx; */
+     /* border: 1px solid red;  */
+} 
+
+.content .store{
+    border-bottom: 1px solid #E5E5E5;
+    padding: 15px;
+    overflow: hidden;
+    position: relative;
+     /* height: 150rpx;  */
+    /* position: relative;  
+    display: flex;  
+    flex-direction: column;   */
+}
+.content .store .storeLeft{
+    width: 37%;
+    float: left;
+}
+.content .store .storeLeft image{
+    width:260rpx;
+    height:160rpx;
+}
+.content .store .storeRight{
+    width: 58%;
+    float: left;
+    text-align: left;
+    margin-left: 5%;
+    /* position: relative; */
+}
+.content .store .storeRight .name{
+    color: #666;
+    font-size: 1em;
+    width:100%;
+    display:block;
+    font-family: PingFangSC-Medium;
+
+}
+.content .store .storeRight .call{
+    color: #FF7623;
+    font-size: .8em;
+     margin-top: 10rpx; 
+    display: flex;
+    padding: 10rpx 0;
+}
+.content .store .storeRight .call text{
+    color: #FF7623;
+}
+.content .store .storeRight .call image{
+    width: 30rpx;
+    position: relative;
+    top: 5rpx;
+    margin-right: 5rpx;
+}
+.content .store .storeRight .address{
+    /* display: inline-block; */
+    margin-top: 8rpx;
+    color: #B2B2B2;
+    font-size: .8em;
+    line-height:normal;
+}
+.content .store .storeRight .pay{
+    text-align: right;
+    float:right;
+    position: absolute;
+    bottom:25rpx;
+    right:30rpx;
+     /* margin-top: -15px;  */
+}
+.content .store .storeRight .pay .payText{
+    display: inline-block;
+    width: 180rpx;
+    height: 55rpx;
+    line-height: 55rpx;
+    color: white;
+    font-size: 1em;
+    border-radius: 6rpx;
+    text-align: center;
+    margin-top:7rpx;
+    background: #FF7623;
+    background-image: -webkit-linear-gradient(top left, #FB9D47, #FF7623)
+}
+
+/*选择商场  */
+.masking{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background: #000;
+    opacity: 0.5;
+}
+.addressSetlect{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+    background: white;
+}
+.addressSetlect .top{
+    text-align: center;
+    color: #666;
+    font-size: 1em;
+    position: relative;
+    height: 100rpx;
+    line-height: 100rpx;
+    border-bottom: 1px solid #E5E5E5;
+}
+.addressSetlect .top .close{
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+    width: 60rpx;
+    height: 60rpx;
+}
+.addressSetlect .top .close image{
+    width: 50%;
+    position: relative;
+    top: -17rpx
+}
+.addressSetlect .addressList{
+    /* border: 1px solid red; */
+    white-space: nowrap;
+    display: flex;
+    height: 730rpx;
+    /* padding-bottom: 30px; */
+}
+.addressSetlect .addressList .list{
+    border-bottom: 1px solid #E5E5E5;
+    height: 100prx;
+    line-height: 100rpx;
+    font-size:1em;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.addressSetlect .addressList .list .addressChunk{
+    display: inline-block;
+    margin-left: 40rpx;
+    padding: 20rpx 0;
+}
+.addressSetlect .addressList .list .addressChunk view{
+    height: 45rpx;
+    line-height: 45rpx;
+    font-size: 1em;
+    color: #333;
+}
+.addressSetlect .addressList .list .addressChunk view.detailAddress{
+    font-size: .8em;
+    color: #B2B2B2;
+}
+/* .addressSetlect .addressList .list text{
+    display: inline-block;
+    margin-left: 30px;
+} */
+.addressSetlect .addressList .list .addressLogo{
+    width: 40rpx;
+    margin:0 40rpx;
+    display: none;
+}
+.addressSetlect .addressList .list .addressLogo.show{
+    display: block;
+}
+.addressSetlect .addressList .list .selectTrue{
+    width: 40rpx;
+    position: absolute;
+    right: 20rpx;
+    top: 40rpx;
+    display: none;
+}
+.addressSetlect .addressList .list.active .addressChunk view.marketName{
+    color: #FF7623;
+}
+.addressSetlect .addressList .list.active .selectTrue{
+    display: block;
+}
+.addressSetlect .Confirm{
+    width: 90%;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin: auto;
+    border: 0;
+    background: #FF7623;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 50rpx;
+}

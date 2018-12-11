@@ -1,0 +1,112 @@
+/*输入框高度*/
+.el-input {
+    input {
+      height: 36px;
+      line-height: 36px;
+    }
+  }
+  /*表单查询统一输入框长度*/
+  .c-search-form {
+    &.el-form--inline .el-form-item {
+      margin-right: 0;
+    }
+    .el-input--suffix .el-input__inner{
+      padding-right:25px;
+    }
+    .el-range-editor.el-input__inner{
+        width:400px;
+    }
+    .el-form-item__content {
+      width: 200px;
+      .el-select {
+        width: 100%;
+      }
+      .el-input__inner {
+        height: 36px;
+        line-height: 36px;
+      }
+    }
+    & > div {
+      & > div {
+        div {
+          display: inline-block;
+          & > div {
+            margin-left: 0 !important;
+          }
+        }
+      }
+      & > div:nth-child(2){
+        text-align: center;
+
+      }
+      &>#u-button{
+          text-align:right;
+      }
+      & > div:nth-child(3) {
+        text-align: right;
+      }
+    }
+  }
+
+ /* 脚部分页 */
+ footer {
+  text-align: center;
+  margin-top: 86px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+footer .el-pager li {
+  min-width: 30px;
+  margin-left: 10px;
+  border: 1px solid #ff7623;
+  color: #ff7623;
+  padding: 0 !important;
+}
+
+footer .el-pagination .disabled .el-icon {
+  color: #ff7623;
+}
+
+footer .el-pagination .btn-prev,
+footer .el-pagination .btn-next {
+  min-width: 30px;
+  margin-left: 10px;
+  display: inline-block;
+  padding: 0;
+  border: 1px solid #ff7623;
+  color: #ff7623 !important;
+}
+
+footer .el-pager li.btn-quicknext,
+footer .el-pager li.btn-quickprev {
+  color: #ff7623 !important;
+}
+
+footer .el-pager li.active {
+  background-color: #ff7623;
+  color: #fff;
+  border: none;
+}
+
+footer .el-pager li:last-child {
+  border-right: 1px solid #ff7623;
+}
+
+footer .el-pagination.is-background .el-pager li:not(.disabled).active {
+  background: #ff7623;
+}
+
+footer .el-pager li.active+li {
+  border-left: 1px solid #ff7623;
+}
+
+footer span {
+  color: #ff7623;
+  display: inline-block;
+  border: 1px solid #ff7623;
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+}

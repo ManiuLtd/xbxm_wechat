@@ -1,0 +1,4 @@
+<view class="page">
+    <map id="map" longitude="{{longitude}}" latitude="{{latitude}}"  markers="{{markers}}" scale="{{scale}}"   bindmarkertap="markertap"  circles="{{circles}}" covers='{{covers}}' style="width: 100%; height: 350px;">
+    </map> 
+</view>

@@ -1,0 +1,245 @@
+.content{
+    width: 94%;
+    margin: auto;
+}
+.topTitle{
+    font-size: 1em;
+    margin-top: 20rpx;
+}
+.moneyChunk{
+    margin-top: 10px;
+    padding: 5px 0;
+    /* border: 1px solid red; */
+    position: relative;
+}
+ .moneyChunk text{
+    position: absolute;
+    top: 38rpx;
+    font-size: 1.2em;
+} 
+.moneyChunk .moneyIpunt{
+    width: 90%;
+    padding-left: 10%;
+    border-bottom: 1px solid #ccc;  
+    height: 50px;
+}
+.moneyChunk .moneyIpunt input{
+    width: 100%;
+    height: 50px;
+    text-align: right;
+}
+.placeholder{
+    /* color: red; */
+    text-align: right;
+
+}
+.couponChunk{
+    /* border: 1px solid red; */
+}
+.couponChunk .couponList{
+    border-bottom: 1px solid #ccc;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+.couponChunk .couponList .name{
+    height: 40rpx;
+    display: inline-block;
+    line-height: 40rpx;
+    background: #FEEDE3;
+    color: #FF7623;
+    font-size: .8em;
+    padding: 0 20rpx;
+    border-radius: 5px;
+}
+.couponChunk .couponList .right{
+    float:right;
+    width: 70%;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: .8em;
+    /* border: 1px solid red; */
+    text-align: right;
+    position: relative;
+}
+.couponChunk .couponList .right .num{
+    color: #F2302F;
+}
+.couponChunk .couponList .right .num.noNum{
+    color: #9B9B9B;
+}
+.couponChunk .couponList .right .numText{
+    color: #9B9B9B ;
+    margin-left: 10rpx;
+    margin-right: 30rpx;
+}
+.couponChunk .couponList .right .leftIco{
+    margin-left: 5rpx;
+    width: 30rpx;
+    height: 30rpx;
+    display: inline-block;
+    position: relative;
+    top: 5rpx;
+}
+.couponChunk .couponDefault{
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: .9em;
+    color:#D8D8D8;
+}
+.couponChunk .couponDefault text{
+    color:#D8D8D8;
+}
+.couponChunk .couponDefault .couponImg{
+    width:50rpx;
+    margin-right: 20rpx;
+    position: relative;
+    top: 13rpx;
+}
+/* .coupon{
+    width: 100%;
+    margin-top: 10px;
+    position: relative;
+    height: 100px;
+}
+.coupon .payBg{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.coupon .couponTop{
+    width: 100%;
+    position: relative;
+    top: 15%;
+}
+.coupon .couponTop text{
+    position: relative;
+    left: 5%;
+    font-size: 0.8em;
+}
+.coupon .couponTop .checkbox-group{
+    position:absolute;
+    right: 5%;
+    top: 0;
+}
+.coupon .couponBottom{
+    position:absolute;
+    left: 5%;
+    bottom:20px;
+    font-size: 1em;
+    width: 90%;
+}
+.coupon .subtract{
+    float: right;
+    font-size: 0.8em;
+    color:#E60012;
+    margin-left: -40px;
+} */
+.payNum{
+    margin-top:100rpx;
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+}
+.payBtn{
+    width: 95%;
+    margin-top: 150rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    background: #FF7623;
+    color: white;
+    border-radius: 10rpx;
+    font-size: 1em;
+}
+.payBtn:disabled{
+    background: #F8F8F8;
+}
+
+
+/*选择优惠券 */
+.masking{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: #000;
+    opacity: 0.55;
+}
+.couponSetlect{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    background: #EDEDEE;
+    border-radius: 15rpx 15rpx 0 0;
+}
+.couponSetlect .top{
+    text-align: center;
+    color: #000;
+    font-size: 1.4em;
+    position: relative;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-weight: bold;
+    margin-bottom: 30rpx;
+}
+.couponSetlect .addressList{
+    height: 640rpx;
+    padding-bottom: 30px;
+}
+.couponSetlect .addressList .list{
+    /* border: 1px solid red;  */
+    width: 90%;
+    height: 210rpx;
+    margin-left: 5%;
+    position: relative;
+}
+.couponSetlect .addressList .list .selectCouponBg{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.couponSetlect .addressList .list .listTop{
+    /* border: 1px solid red; */
+    color: #FF7623;
+    width: 90%;
+    height: 100rpx;
+    margin-left: 5%;
+    text-align: left;
+    position: relative;
+    font-size: 1em;
+}
+.couponSetlect .addressList .list .listTop .num{
+    font-size: 2em;
+}
+.couponSetlect .addressList .list .listTop .checkbox-group{
+    position:absolute;
+    right: 0;
+    top: 20rpx;
+}
+.couponSetlect .addressList .list .bottom{
+    width:90%;
+    margin-left: 5%;
+    /* border: 1px solid red; */
+    color: #555;
+    font-size: .8em;
+}
+
+.couponSetlect .Confirm{
+    width: 90%;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin: auto;
+    border: 0;
+    background: #FF7623;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 50rpx;
+}

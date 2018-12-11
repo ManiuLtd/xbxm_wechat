@@ -1,0 +1,19 @@
+<view class='mobileChunk'>
+    <form bindsubmit='formSubmit' bindreset='formReset'>
+        <view class='list'>
+            <!-- <label>手机号码</label> -->
+            <view class='phone'>
+                <input type='text' placeholder='请输入手机号'  placeholder-style="color:#D8D8D8" bindinput='check' maxlength='11' ></input>
+            </view>{{}}
+            <button class='codeBtn {{disabledCode?"":"codeText"}}' disabled='{{disabledCode}}' bindtap='codeBtn'>{{codeText}}</button>
+        </view>
+        <view class='list'>
+            <!-- <label>验证码</label> -->
+            <input placeholder='输入验证码' placeholder-style="color:#D8D8D8" class='code' maxlength='6' bindinput='codeNumber'></input>
+        </view>
+        <view class='submitChunk'>
+            <button class='{{subimtFla?"loginBtn":""}}' disabled='{{subimtFla}}' bindtap='loginBtn'>登录</button>
+            <button class='payBtn' wx:if='{{user==0}}' bindtap='payBtn'>快捷支付</button>
+        </view>
+    </form>
+</view>

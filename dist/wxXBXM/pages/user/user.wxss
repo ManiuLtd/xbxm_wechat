@@ -1,0 +1,95 @@
+page{
+    background: #F6F6F6
+}
+.main{
+    width: 100%;
+    height: 100%;
+}
+.userTop{
+    /* background: white; */
+    height: 300rpx;
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+    padding: 20rpx 0;
+    position: relative;
+    color: #666;
+}
+/* .userTop .userTopRadius{
+    background: #FF7623;
+    height: 120rpx;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-bottom-left-radius: 450rpx 80rpx;
+    border-bottom-right-radius: 450rpx 80rpx;
+} */
+.userTop .userTopRadius{
+    height: 120rpx;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.userTop .userTopRadius image{
+    width: 100%;
+    height: 130rpx;
+}
+.userTop .avatarUrl{
+    width: 150rpx;
+    height: 150rpx;
+    display: inline-block;
+    margin:40rpx 0 5rpx;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2
+}
+.infoList{
+    width:92%;
+    margin:auto;
+    margin-top: 30rpx;
+    background: white;
+    overflow: hidden;
+    border-radius:12rpx;
+    box-shadow:0px 0px 15rpx #E6E6E6;
+}
+.infoList .chunk{
+    width: 100%;
+    height: 120rpx;
+    line-height: 120rpx;
+    border-bottom: 1px solid #E5E5E5;
+    padding: 0 5%;
+    font-size: 1em;
+    overflow: hidden;
+    color: #333;
+}
+.infoList .chunk text{
+    font-size: 1em
+}
+.infoList .chunk .mobile,.infoList .chunk .coupon{
+    width: 30rpx;
+    margin-right: 30rpx;
+    display: inline-block;
+    position: relative;
+    top: 10rpx;
+}
+.infoList .chunk .coupon{
+    width: 40rpx;
+    top: 5rpx;
+    left:-5rpx;
+    margin-right: 20rpx;
+}
+.infoList .chunk .iphoneText{
+    float: right;
+    position: relative;
+    right: 100rpx;
+}
+.infoList .chunk .leftIco{
+    width: 30rpx;
+    float: right;
+    position: relative;
+    top:45rpx;
+    right:50rpx;
+
+}

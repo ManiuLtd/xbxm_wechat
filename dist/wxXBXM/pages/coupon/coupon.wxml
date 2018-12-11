@@ -1,0 +1,48 @@
+<view class='main'>
+    <view class='top'>
+        <view><text class=' {{selectFla?"active":""}}' bindtap='selectTab' data-index='0'>可使用</text></view>
+        <view><text class=' {{selectFla?"":"active"}}' bindtap='selectTab' data-index='1'>已失效</text></view>
+    </view>
+    <!-- <view class='content'> -->
+    <!--未使用  -->
+        <scroll-view class='unused' wx:if='{{unusedFla}}'>
+            <view class='mainChunk' wx:key='{{index}}' wx:for='{{couponData}}' wx:for-item='coupon'>
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/noCoupon.png' class='couponImg' mode='widthFix'></image>
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/esbCoupon.png' wx:if='{{coupon.couponClass ==0}}' class='typeImg' mode='widthFix'></image>
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/storeCoupon.png' wx:if='{{coupon.couponClass ==1}}' class='typeImg' mode='widthFix'></image>
+                <view class='left '>
+                    <view class='hidden'>使用条件:{{coupon.couponType!=1?'满'+coupon.minimumMoney+'元可使用':'无门槛'}}</view>
+                    <view class='hidden'>适用范围:{{coupon.merchantNames}}</view>
+                    <view class='hidden'>有效期:{{coupon.validStartTime}}-{{coupon.validEndTime}}</view>
+                </view>
+                <view class='right hidden'>
+                    ￥<text>{{coupon.couponMoney}}</text>
+                </view>
+            </view>
+            <view class='noCoupon' wx:if='{{!couponData.length}}'>
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/defaultCoupon.png' class='defaultCoupon'></image>
+                <view>暂无优惠券</view>
+            </view>
+        </scroll-view>
+        <!--已失效  -->
+         <scroll-view class='lose'  wx:if='{{!unusedFla}}'>
+            <view class='mainChunk' wx:key='{{index}}' wx:for='{{couponData}}' wx:for-item='coupon'>
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/noCoupon.png' class='couponImg' mode='widthFix'></image>
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/noEsbCoupon.png' wx:if='{{coupon.couponClass ==0}}' class='typeImg' mode='widthFix'></image>
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/noStoreCoupon.png' wx:if='{{coupon.couponClass ==1}}' class='typeImg' mode='widthFix'></image>
+                <view class='left'>
+                    <view class='hidden'>使用条件:{{coupon.couponType!=1?'满'+coupon.minimumMoney+'元可使用':'无门槛'}}</view>
+                    <view class='hidden'>适用范围:{{coupon.merchantNames}}</view>
+                    <view class='hidden'>有效期:{{coupon.validStartTime}}-{{coupon.validEndTime}}</view>
+                </view>
+                <view class='right hidden'>
+                    ￥<text>{{coupon.couponMoney}}</text>
+                </view>
+            </view>
+            <view class='noCoupon' wx:if='{{!couponData.length}}'>
+                <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/defaultCoupon.png' class='defaultCoupon'></image>
+                <view>暂无优惠券</view>
+            </view>
+        </scroll-view>  
+    <!-- </view> -->
+</view>

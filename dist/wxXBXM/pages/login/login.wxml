@@ -1,0 +1,30 @@
+<!--login.wxml-->
+<view class="main" wx:if='{{mobileShow}}'>
+    <view class='top'>
+        <image src='https://trade.uselect.com.cn/wxXBXM/assests/images/login.png' mode='widthFix'></image>    
+    </view>
+    <view class='content'>
+        <button class='wxLogin' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信一键登录</button>
+        <button class='mobileLogin' bindtap='mobileLogin'>输入手机号登录</button>
+    </view>
+</view>
+
+<view class='mobileChunk' wx:if='{{!mobileShow}}'>
+    <form bindsubmit='formSubmit' bindreset='formReset'>
+        <view class='list'>
+            <label>手机号码</label>
+            <view class='phone'>
+                <input type='text' placeholder='填写手机号码' maxlength='11' bindblur='phoneNumber'></input>
+            </view>
+            <view class='codeBtn' bindtap='code'>获取验证码</view>
+        </view>
+        <view class='list'>
+            <label>验证码</label>
+            <input placeholder='输入验证码' class='code' maxlength='6' bindblur='codeNumber'></input>
+        </view>
+        <view class='submitChunk'>
+            <button class='loginBtn' bindtap='loginBtn'>登录</button>
+            <button class='payBtn'>快捷支付</button>
+        </view>
+    </form>
+</view>

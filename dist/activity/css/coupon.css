@@ -1,0 +1,201 @@
+/* 领取 */
+.getCoupon{
+    width: 100%;
+	display: none;
+}
+.getCoupon .couponChunk{
+    width: 90%;
+    margin:auto;
+    position: relative;
+    top: 170px;
+}
+
+.getCoupon .couponChunk .topImg{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: absolute;
+    top: -75px;
+    left: 50%;
+    margin-left: -75px;
+    background: #F3F3F3;
+    text-align: center;
+    z-index: 2;
+}
+.getCoupon .couponChunk .topImg img{
+    width: 60%;
+    margin-top: 25px;
+}
+.getCoupon .couponContent{
+    width: 100%;
+    height: 820px;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+    /* border:1px solid red; */
+}
+.getCoupon .couponContent .couponBg{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.getCoupon .couponContent .typeImg{
+    width: 270px;
+    height: 270px;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+}
+.getCoupon .couponContent .num{
+    margin-top: 130px;
+    font-size: 80px;
+    color: #FF7623;
+    text-align: center;
+}
+.getCoupon.no .couponContent .num{
+    color: #9B9B9B;
+}
+.getCoupon .couponContent .condition{
+    margin-top: 100px;
+    font-size: 50px;
+    color: #9B9B9B ;
+    text-align: center;
+}
+.getCoupon .couponContent .countDown{
+    margin-top: 50px;
+    /* border:1px solid red; */
+    font-size: 60px;
+    color: #555;
+    text-align: center;
+	display: none;
+}
+.getCoupon .couponContent .countDown span{
+    color: #FF7623;
+}
+.getCoupon .couponContent .scope{
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    color: #9B9B9B;
+    font-size: 40px;
+    height: 150px;
+    line-height: 150px;
+    width: 97%;
+    margin-left: 3%;
+}
+.getCoupon .couponContent .scope .storeList{
+    display: inline-block;
+    margin-left: 30px;
+    width: 60%;
+    position: relative;
+    top: 10px;
+}
+.getCoupon .couponContent .scope .storeList span{
+    color: #FF7623;
+    background: rgba(254,208,180,0.29);
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 20px;
+}
+.getCoupon.no .couponContent .scope .storeList span{
+    color: #9B9B9B ;
+    background:#EDEDEE;
+}
+.getCoupon .couponContent .scope .leftIco{
+    width: 70px;
+    /* transform: rotateY(180deg); */
+    position: absolute;
+    right: 30px;
+    top: 40px;
+}
+.getCoupon .getSubmit{
+    width:90%;
+    margin-left: 5%;
+    margin-top: 250px;
+    height: 150px;
+    border-radius: 10px;
+    border:0;
+    background: #D8D8D8;
+    color: white;
+    font-size: 60px;
+    -webkit-appearance:none
+}
+.getCoupon .getSubmit.active{
+    background: #FF9C30;
+}
+
+/* 优惠券详情 */
+.particulars{
+    width: 90%;
+    margin:auto;
+    /* border:1px solid red; */
+    position: relative;
+    top: 170px;
+    height: 900px;
+}
+
+.particulars .topImg{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: absolute;
+    top: -75px;
+    left: 50%;
+    margin-left: -75px;
+    background: #F3F3F3;
+    text-align: center;
+    z-index: 2;
+}
+.particulars .topImg img{
+    width: 60%;
+    margin-top: 25px;
+}
+.particulars .psContent{
+    width: 100%;
+    height: 800px;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+    /* border:1px solid red; */
+}
+.particulars .psContent .couponParticularsBg{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.particulars .psContent .typeImg{
+    width: 270px;
+    height: 270px;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+}
+.particulars .psContent .title{
+    margin-top: 30px;
+    font-size: 50px;
+    color: #555 ;
+    text-align: center;
+}
+.particulars .psContent .content{
+    width: 80%;
+    margin:auto;
+    color: #9B9B9B;
+    font-size: 40px;
+    margin-top: 170px;
+    height: 450px;
+}
+.particulars .return{
+    width:100%;
+    margin-top: 90px;
+    height: 150px;
+    border-radius: 10px;
+    border:0;
+    background: #FF9C30;
+    color: white;
+    font-size: 60px;
+    -webkit-appearance:none
+}
